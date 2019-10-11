@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	array := generateArray(100)
+	array := generateArray(1000)
 	startSorting(array)
 }
 
