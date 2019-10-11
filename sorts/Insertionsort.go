@@ -6,12 +6,12 @@ import (
 	"time"
 )
 
-func StartInsertionsort(waitgroup *sync.WaitGroup, a []int, order *[]string) {
+func StartInsertionsort(waitgroup *sync.WaitGroup, a []int, order *[]Sort) {
 	start := time.Now()
 	insertionsort(a)
 	elapsed := time.Since(start)
 	fmt.Println("Insertion Sort took: ", elapsed, "\n--- Sorted by Insertion Sort ---\n", a, "\n")
-	*order = append(*order, "Insertion Sort")
+	*order = append(*order, Sort{"Insertion Sort", elapsed})
 	waitgroup.Done()
 }
 

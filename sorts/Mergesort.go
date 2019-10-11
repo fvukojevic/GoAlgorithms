@@ -6,12 +6,12 @@ import (
 	"time"
 )
 
-func StartMergesort(waitgroup *sync.WaitGroup, a []int, order *[]string) {
+func StartMergesort(waitgroup *sync.WaitGroup, a []int, order *[]Sort) {
 	start := time.Now()
 	mergeSort(a)
 	elapsed := time.Since(start)
 	fmt.Println("Merge Sort took: ", elapsed, "\n--- Sorted by Merge Sort ---\n", a, "\n")
-	*order = append(*order, "Merge Sort")
+	*order = append(*order, Sort{"Merge Sort", elapsed})
 	waitgroup.Done()
 }
 

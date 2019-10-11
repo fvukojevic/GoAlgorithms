@@ -4,12 +4,13 @@ import (
 	"algorithms/sorts"
 	"fmt"
 	"math/rand"
+	"sort"
 	"sync"
 	"time"
 )
 
 func main() {
-	array := generateArray(10000)
+	array := generateArray(100)
 	startSorting(array)
 }
 
@@ -27,7 +28,7 @@ func generateArray(size int) []int {
 func startSorting(array []int) {
 	var waitgroup sync.WaitGroup
 
-	order := make([]string, 0, 6)
+	order := make([]sorts.Sort, 0, 6)
 
 	waitgroup.Add(1)
 	go sorts.StartSelectionsort(&waitgroup, array, &order)
@@ -44,7 +45,11 @@ func startSorting(array []int) {
 
 	waitgroup.Wait()
 
+	sort.Slice(order, func(i, j int) bool {
+		return order[i].Time < order[j].Time
+	})
+
 	for index, element := range order {
-		fmt.Println(index+1, ":", element)
+		fmt.Println(index+1, ":", element.Sort, ":", element.Time)
 	}
 }
