@@ -6,11 +6,12 @@ import (
 	"time"
 )
 
-func StartSelectionsort(waitgroup *sync.WaitGroup, a []int) {
+func StartSelectionsort(waitgroup *sync.WaitGroup, a []int, order *[]string) {
 	start := time.Now()
 	selectionsort(a)
 	elapsed := time.Since(start)
 	fmt.Println("Selection Sort took: ", elapsed, "\n--- Sorted by Selection Sort ---\n", a, "\n")
+	*order = append(*order, "Selection Sort")
 	waitgroup.Done()
 }
 

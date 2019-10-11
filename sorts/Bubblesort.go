@@ -6,11 +6,12 @@ import (
 	"time"
 )
 
-func StartBubblesort(waitgroup *sync.WaitGroup, a []int) {
+func StartBubblesort(waitgroup *sync.WaitGroup, a []int, order *[]string) {
 	start := time.Now()
 	bubblesort(a)
 	elapsed := time.Since(start)
 	fmt.Println("Bubble Sort took: ", elapsed, "\n--- Sorted by Bubble Sort ---\n", a, "\n")
+	*order = append(*order, "Bubble Sort")
 	waitgroup.Done()
 }
 

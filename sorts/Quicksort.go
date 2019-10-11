@@ -7,11 +7,12 @@ import (
 	"time"
 )
 
-func StartQuicksort(waitgroup *sync.WaitGroup, a []int) {
+func StartQuicksort(waitgroup *sync.WaitGroup, a []int, order *[]string) {
 	start := time.Now()
 	quicksort(a)
 	elapsed := time.Since(start)
 	fmt.Println("Quick Sort took: ", elapsed, "\n--- Sorted by Quick Sort ---\n", a, "\n")
+	*order = append(*order, "Quick Sort")
 	waitgroup.Done()
 }
 

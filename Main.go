@@ -2,6 +2,7 @@ package main
 
 import (
 	"algorithms/sorts"
+	"fmt"
 	"math/rand"
 	"sync"
 	"time"
@@ -26,18 +27,24 @@ func generateArray(size int) []int {
 func startSorting(array []int) {
 	var waitgroup sync.WaitGroup
 
+	order := make([]string, 0, 6)
+
 	waitgroup.Add(1)
-	go sorts.StartSelectionsort(&waitgroup, array)
+	go sorts.StartSelectionsort(&waitgroup, array, &order)
 	waitgroup.Add(1)
-	go sorts.StartQuicksort(&waitgroup, array)
+	go sorts.StartQuicksort(&waitgroup, array, &order)
 	waitgroup.Add(1)
-	go sorts.StartMergesor(&waitgroup, array)
+	go sorts.StartMergesor(&waitgroup, array, &order)
 	waitgroup.Add(1)
-	go sorts.StartBubblesort(&waitgroup, array)
+	go sorts.StartBubblesort(&waitgroup, array, &order)
 	waitgroup.Add(1)
-	go sorts.StartInsertionsort(&waitgroup, array)
+	go sorts.StartInsertionsort(&waitgroup, array, &order)
 	waitgroup.Add(1)
-	go sorts.StartCountingsort(&waitgroup, array)
+	go sorts.StartCountingsort(&waitgroup, array, &order)
 
 	waitgroup.Wait()
+
+	for index, element := range order {
+		fmt.Println(index+1, ":", element)
+	}
 }

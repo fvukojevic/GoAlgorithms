@@ -6,11 +6,12 @@ import (
 	"time"
 )
 
-func StartCountingsort(waitgroup *sync.WaitGroup, a []int) {
+func StartCountingsort(waitgroup *sync.WaitGroup, a []int, order *[]string) {
 	start := time.Now()
 	countingSort(a)
 	elapsed := time.Since(start)
 	fmt.Println("Counting Sort took: ", elapsed, "\n--- Sorted by Counting Sort ---\n", a, "\n")
+	*order = append(*order, "Counting Sort")
 	waitgroup.Done()
 }
 
