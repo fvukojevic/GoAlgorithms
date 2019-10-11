@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-func StartMergesor(waitgroup *sync.WaitGroup, a []int, order *[]string) {
+func StartMergesort(waitgroup *sync.WaitGroup, a []int, order *[]string) {
 	start := time.Now()
 	mergeSort(a)
 	elapsed := time.Since(start)

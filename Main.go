@@ -34,7 +34,7 @@ func startSorting(array []int) {
 	waitgroup.Add(1)
 	go sorts.StartQuicksort(&waitgroup, array, &order)
 	waitgroup.Add(1)
-	go sorts.StartMergesor(&waitgroup, array, &order)
+	go sorts.StartMergesort(&waitgroup, array, &order)
 	waitgroup.Add(1)
 	go sorts.StartBubblesort(&waitgroup, array, &order)
 	waitgroup.Add(1)
